@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, useReducer } from 'react';
-import appReducer, { InitialState } from '../store/reducers';
-import { IState, Actions } from '../store/types';
+import appReducer, { InitialState } from '../store/goal/reducers';
+import { IState, Actions } from '../store/goal/types';
 
 export const Context = createContext<{
   state: IState;

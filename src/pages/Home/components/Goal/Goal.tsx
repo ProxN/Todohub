@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { toggleGoal, setEditGoal } from '../../../../store/actions';
-import { IGoal } from '../../../../store/types';
+import { toggleGoal, setEditGoal } from '../../../../store/goal/actions';
+import { IGoal } from '../../../../store/goal/types';
 import Checkbox from '../../../../components/Checkbox';
 import { Context } from '../../../../context/app.context';
 import { GoalBox, GoalNotes, GoalContent, GoalText } from './Goal.styles';

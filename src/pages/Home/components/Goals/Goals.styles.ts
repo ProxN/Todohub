@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const GoalsContainer = styled.div`
   max-height: 100%;
   overflow: hidden;
+  margin-top: 25px;
 `;
 
 export const GoalsHeader = styled.div`
