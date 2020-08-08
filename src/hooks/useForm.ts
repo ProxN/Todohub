@@ -5,7 +5,14 @@ interface GoalForm {
   notes: string;
 }
 
-type FormTypes = GoalForm;
+interface TaskForm {
+  task: string;
+  notes: string;
+  start: string;
+  end: string;
+}
+
+type FormTypes = GoalForm | TaskForm;
 
 interface IUseForm<T> {
   values: T;
@@ -14,10 +21,6 @@ interface IUseForm<T> {
   ) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
-
-// const isEmpty = (obj: FormTypes): boolean => {
-//   return Object.keys(obj).length === 0;
-// };
 
 const useForm = <T extends FormTypes>(
   callback: () => void,

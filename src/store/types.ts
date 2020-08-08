@@ -2,6 +2,11 @@ const ADD_GOAL = 'ADD_GOAL';
 const REMOVE_GOAL = 'REMOVE_GOAL';
 const SELECTED_GOAL = 'SELECTED_GOAL';
 const EDIT_GOAL = 'EDIT_GOAL';
+const ADD_TASK = 'ADD_TASK';
+const EDIT_TASK = 'EDIT_TASK';
+const REMOVE_TASK = 'REMOVE_TASK';
+const TOGGLE_TASK = 'TOGGLE_TASK';
+const SELECTED_TASK = 'SELECTED_TASK';
 const TOGGLE_GOAL = 'TOGGLE_GOAL';
 const SET_CALENDAR_DATE = 'SET_CALENDAR_DATE';
 const SET_SELECTED_DATE = 'SET_SELECTED_DATE';
@@ -15,6 +20,16 @@ export interface IGoal {
   year: number;
 }
 
+export interface ITask {
+  id: number;
+  task: string;
+  notes: string;
+  start: string;
+  end: string;
+  date: string;
+  checked: boolean;
+}
+
 export interface IEditGoal {
   id: number;
   body: {
@@ -23,9 +38,21 @@ export interface IEditGoal {
   };
 }
 
+export interface IEditTAsk {
+  id: number;
+  body: {
+    task: string;
+    notes: string;
+    start: string;
+    end: string;
+  };
+}
+
 export interface IState {
   goals: IGoal[];
+  tasks: ITask[];
   selectedGoal: IGoal | null;
+  selectedTask: ITask | null;
   calendarDate: string;
   selectedDate: string;
 }
@@ -65,6 +92,30 @@ interface SetSelectedDate {
   payload: string;
 }
 
+interface AddTaskAction {
+  type: typeof ADD_TASK;
+  payload: ITask;
+}
+
+interface EditTaskAction {
+  type: typeof EDIT_TASK;
+  payload: IEditTAsk;
+}
+
+interface RemoveTaskAction {
+  type: typeof REMOVE_TASK;
+  payload: number;
+}
+interface ToggleTaskAction {
+  type: typeof TOGGLE_TASK;
+  payload: number;
+}
+
+interface SelectedTask {
+  type: typeof SELECTED_TASK;
+  payload: ITask | null;
+}
+
 export type Actions =
   | AddGoalAction
   | RemoveGoalAction
@@ -72,4 +123,9 @@ export type Actions =
   | ToggleGoal
   | SelectedGoal
   | SetCalendarDate
-  | SetSelectedDate;
+  | SetSelectedDate
+  | AddTaskAction
+  | EditTaskAction
+  | RemoveTaskAction
+  | ToggleTaskAction
+  | SelectedTask;

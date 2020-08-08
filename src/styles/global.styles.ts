@@ -55,6 +55,7 @@ export default createGlobalStyle`
     ::-webkit-scrollbar-thumb {
         background:#484567;
         border-radius:5px;
+ 
 
     }
 `;

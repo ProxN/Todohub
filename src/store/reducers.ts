@@ -1,8 +1,10 @@
-import { IState, Actions, IGoal, IEditGoal } from './types';
+import { IState, Actions, IGoal, IEditGoal, ITask, IEditTAsk } from './types';
 
 export const InitialState: IState = {
   goals: [],
+  tasks: [],
   selectedGoal: null,
+  selectedTask: null,
   calendarDate: '',
   selectedDate: '',
 };
@@ -50,6 +52,39 @@ export default (state = InitialState, action: Actions): IState => {
       return {
         ...state,
         selectedDate: payload as string,
+      };
+
+    case 'ADD_TASK':
+      return {
+        ...state,
+        tasks: [...state.tasks, payload as ITask],
+      };
+    case 'EDIT_TASK': {
+      const { body, id } = payload as IEditTAsk;
+      return {
+        ...state,
+        tasks: state.tasks.map((el) =>
+          el.id === id ? { ...el, ...body } : el
+        ),
+      };
+    }
+    case 'REMOVE_TASK':
+      return {
+        ...state,
+        tasks: state.tasks.filter((el) => el.id !== (payload as number)),
+      };
+    case 'TOGGLE_TASK':
+      return {
+        ...state,
+        tasks: state.tasks.map((el) =>
+          el.id === (payload as number) ? { ...el, checked: !el.checked } : el
+        ),
+      };
+
+    case 'SELECTED_TASK':
+      return {
+        ...state,
+        selectedTask: payload as ITask,
       };
     default:
       return state;

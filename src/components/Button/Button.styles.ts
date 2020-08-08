@@ -67,7 +67,7 @@ export default styled.button<StyleProps>`
   width: ${(props) => props.fullWidth && '100%'};
   padding: ${(props) => sizes[props.size as string]};
   ${(props) => styles[props.variant as string]};
-
+  margin-top: 5px;
   :not(:last-child) {
     margin-right: 15px;
   }

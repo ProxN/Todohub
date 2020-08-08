@@ -1,4 +1,4 @@
-import { Actions, IGoal, IEditGoal } from './types';
+import { Actions, IGoal, IEditGoal, ITask, IEditTAsk } from './types';
 
 export const addGoal = (Goal: IGoal): Actions => {
   return {
@@ -46,5 +46,40 @@ export const setSelectedDate = (date: string): Actions => {
   return {
     type: 'SET_SELECTED_DATE',
     payload: date,
+  };
+};
+
+export const addTask = (task: ITask): Actions => {
+  return {
+    type: 'ADD_TASK',
+    payload: task,
+  };
+};
+
+export const editTask = (data: IEditTAsk): Actions => {
+  return {
+    type: 'EDIT_TASK',
+    payload: data,
+  };
+};
+
+export const toggleTask = (id: number): Actions => {
+  return {
+    type: 'TOGGLE_TASK',
+    payload: id,
+  };
+};
+
+export const removeTask = (id: number): Actions => {
+  return {
+    type: 'REMOVE_TASK',
+    payload: id,
+  };
+};
+
+export const setSeelctedTask = (task: ITask | null): Actions => {
+  return {
+    type: 'SELECTED_TASK',
+    payload: task,
   };
 };

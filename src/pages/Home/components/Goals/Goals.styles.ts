@@ -32,7 +32,7 @@ export const GoalsList = styled.div`
   ${({ theme }) => css`
     scrollbar-color: ${theme.colors.primary.light} ${theme.colors.primary.dark};
   `};
-  margin-top: 25px;
+  margin-top: 15px;
   max-height: 100%;
   overflow-y: auto;
   padding-bottom: 50px;
@@ -53,5 +53,4 @@ export const EmptyGoals = styled.div`
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.1);
-  margin: 10px 0;
 `;

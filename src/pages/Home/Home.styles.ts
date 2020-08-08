@@ -27,6 +27,7 @@ export const DashGrid = styled.div`
   flex: 1;
   overflow: hidden;
   margin-bottom: 50px;
+  grid-gap: 130px;
 `;
 
 export const LeftCol = styled.div`
