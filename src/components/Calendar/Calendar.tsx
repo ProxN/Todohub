@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import dayjs from 'dayjs';
-import getCalendar from '../../helpers/getCalendar';
+import React from 'react';
+import Icon from '../Icon';
+import useCalendar from '../../hooks/useCalendar';
 import {
   CalendarContainer,
   CalendarHeader,
@@ -10,60 +10,16 @@ import {
   CalendarDayName,
   IconBtn,
 } from './Calendar.styles';
-import Icon from '../Icon';
-
-let date = dayjs();
 
 const Calendar: React.FC = () => {
-  const [calendarDate, setCalendarDate] = useState(date.format('MM-DD-YYYY'));
-  const [selectedDate, setSelectedDate] = useState({ date: '', key: '' });
-  const calendar = getCalendar(calendarDate);
-
-  const handleNextMonthClick = (): void => {
-    const nextDate = date.add(1, 'month');
-    date = dayjs(nextDate);
-    setCalendarDate(date.format('MM-DD-YYYY'));
-  };
-
-  const handlePrevMonthClick = (): void => {
-    const nextDate = date.subtract(1, 'month');
-    date = dayjs(nextDate);
-    setCalendarDate(date.format('MM-DD-YYYY'));
-  };
-
-  const getMonth = (): number => {
-    return dayjs(calendarDate).get('month');
-  };
-  const getYear = (): number => {
-    return dayjs(calendarDate).get('year');
-  };
-
-  const handleDayBoxClick = (type: string, day: number): void => {
-    if (type === 'prev') {
-      const prevSelected = dayjs(calendarDate)
-        .subtract(1, 'month')
-        .set('date', day)
-        .format('MM-DD-YYYY');
-      setSelectedDate({
-        date: prevSelected,
-        key: `p${day}-${getMonth() - 1}-${getYear()}`,
-      });
-    } else if (type === 'curr') {
-      setSelectedDate({
-        date: calendarDate,
-        key: `c${day}-${getMonth()}-${getYear()}`,
-      });
-    } else if (type === 'next') {
-      const nextSelected = dayjs(calendarDate)
-        .add(1, 'month')
-        .set('date', day)
-        .format('MM-DD-YYYY');
-      setSelectedDate({
-        date: nextSelected,
-        key: `n${day}-${getMonth() + 1}-${getYear()}`,
-      });
-    }
-  };
+  const {
+    calendar,
+    handleDayBoxClick,
+    handleNextMonthClick,
+    handlePrevMonthClick,
+    generateKey,
+    selectedDate,
+  } = useCalendar();
 
   return (
     <CalendarContainer>
@@ -89,9 +45,7 @@ const Calendar: React.FC = () => {
         {calendar.prev.map((el) => (
           <CalendarDayBox
             onClick={() => handleDayBoxClick('prev', el)}
-            selected={
-              `p${el}-${getMonth() - 1}-${getYear()}` === selectedDate.key
-            }
+            selected={generateKey('prev', el) === selectedDate.key}
             opacity
           >
             {el}
@@ -101,7 +55,7 @@ const Calendar: React.FC = () => {
           <CalendarDayBox
             curr={el === calendar.currentDay}
             onClick={() => handleDayBoxClick('curr', el)}
-            selected={`c${el}-${getMonth()}-${getYear()}` === selectedDate.key}
+            selected={generateKey('curr', el) === selectedDate.key}
           >
             {el}
           </CalendarDayBox>
@@ -109,9 +63,7 @@ const Calendar: React.FC = () => {
         {calendar.next.map((el) => (
           <CalendarDayBox
             onClick={() => handleDayBoxClick('next', el)}
-            selected={
-              `n${el}-${getMonth() + 1}-${getYear()}` === selectedDate.key
-            }
+            selected={generateKey('next', el) === selectedDate.key}
             opacity
           >
             {el}

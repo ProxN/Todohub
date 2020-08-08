@@ -58,18 +58,18 @@ export const CalendarDayBox = styled.div<StylesProps>`
       background: ${theme.colors.secondary.light};
       box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.2);
     `};
-
-  /* ${(props) =>
-    props.selected &&
-    css`
-      border: 2px solid ${props.theme.colors.secondary.light};
-    `}; */
-  border:2px solid transparent;
-  border-color:${(props) =>
-    props.selected && props.theme.colors.secondary.light};
-  padding: 4px 10px;
-  border-radius: 18px 0px 18px 0px;
   opacity: ${(props) => (props.opacity ? '0.5' : '0.9')};
+  border: 2px solid transparent;
+  border-color: ${(props) =>
+    props.selected && props.theme.colors.secondary.light};
+  ${({ selected, theme }) =>
+    selected &&
+    css`
+      opacity: 1;
+      border-color: ${theme.colors.secondary.light};
+    `};
+  border-radius: 18px 0px 18px 0px;
   justify-self: center;
   cursor: pointer;
+  padding: 4px 10px;
 `;
