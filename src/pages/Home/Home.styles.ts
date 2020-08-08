@@ -15,7 +15,7 @@ export const HomeMessage = styled.h1`
 
 export const HomeContent = styled.div`
   display: grid;
-  grid-template-rows: 100px calc(100vh - 100px);
+  grid-template-rows: 80px calc(100vh - 80px);
   width: 100%;
   max-height: 100%;
 `;
@@ -27,4 +27,10 @@ export const DashGrid = styled.div`
   flex: 1;
   overflow: hidden;
   margin-bottom: 50px;
+`;
+
+export const LeftCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `;

@@ -45,6 +45,16 @@ export default createGlobalStyle`
     section{
         padding:0px 50px;
         height:100vh;
+    }
+
+    
+    ::-webkit-scrollbar {
+        background:#2d2b4c;
+        width:5px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background:#484567;
+        border-radius:5px;
 
     }
 `;

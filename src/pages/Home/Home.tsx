@@ -1,7 +1,7 @@
 import React from 'react';
 import Goals from './components/Goals/Goals';
-import { HomeMessage, HomeContent, DashGrid } from './Home.styles';
 import Calendar from '../../components/Calendar';
+import { HomeMessage, HomeContent, DashGrid, LeftCol } from './Home.styles';
 
 const Home: React.FC = () => {
   return (
@@ -12,10 +12,10 @@ const Home: React.FC = () => {
           <span>Ayoub!</span>
         </HomeMessage>
         <DashGrid>
-          <div>
+          <LeftCol>
             <Calendar />
             <Goals />
-          </div>
+          </LeftCol>
         </DashGrid>
       </HomeContent>
     </section>

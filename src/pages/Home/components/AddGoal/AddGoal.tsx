@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import dayjs from 'dayjs';
 import Form from '../../../../components/Form';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
@@ -39,8 +40,8 @@ const AddGoal: React.FC<Props> = ({ onClose }) => {
           notes: values.notes,
           id: Date.now(),
           checked: false,
-          month: new Date().getMonth(),
-          year: new Date().getFullYear(),
+          month: dayjs(state.calendarDate).month(),
+          year: dayjs(state.calendarDate).year(),
         })
       );
     }

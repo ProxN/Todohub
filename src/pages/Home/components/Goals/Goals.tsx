@@ -5,12 +5,14 @@ import { Context } from '../../../../context/app.context';
 import AddGoal from '../AddGoal/AddGoal';
 import useFormToggle from '../../../../hooks/useFormToggle';
 import GetMonth from '../../../../helpers/getMonth';
+import { getCurrentMonthGoals } from '../../../../helpers/helpersFunc';
 import {
   GoalsContainer,
   GoalsHeader,
   GoalsTitle,
   AddGoalButton,
   GoalsList,
+  EmptyGoals,
 } from './Goals.styles';
 
 const Goals: React.FC = () => {
@@ -30,8 +32,13 @@ const Goals: React.FC = () => {
           </AddGoalButton>
         </GoalsHeader>
         <GoalsList>
-          {state.goals.length > 0 &&
-            state.goals.map((el) => <Goal data={el} key={el.id} />)}
+          {state.goals.length > 0 ? (
+            getCurrentMonthGoals(state.goals, state.calendarDate).map((el) => (
+              <Goal data={el} key={el.id} />
+            ))
+          ) : (
+            <EmptyGoals onClick={handleOpen}>Add New Goals.</EmptyGoals>
+          )}
         </GoalsList>
       </GoalsContainer>
       {(isOpen || state.selectedGoal) && <AddGoal onClose={handleClose} />}
