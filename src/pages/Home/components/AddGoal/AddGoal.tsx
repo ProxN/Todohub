@@ -8,7 +8,7 @@ import {
   setEditGoal,
   editGoal,
   removeGoal,
-} from '../../../../store/goal/actions';
+} from '../../../../store/actions';
 import { Context } from '../../../../context/app.context';
 
 interface Props {

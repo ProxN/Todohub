@@ -34,3 +34,17 @@ export const setEditGoal = (goal: IGoal | null): Actions => {
     payload: goal,
   };
 };
+
+export const setCalendarDate = (date: string): Actions => {
+  return {
+    type: 'SET_CALENDAR_DATE',
+    payload: date,
+  };
+};
+
+export const setSelectedDate = (date: string): Actions => {
+  return {
+    type: 'SET_SELECTED_DATE',
+    payload: date,
+  };
+};

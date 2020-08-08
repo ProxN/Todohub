@@ -3,6 +3,8 @@ import { IState, Actions, IGoal, IEditGoal } from './types';
 export const InitialState: IState = {
   goals: [],
   selectedGoal: null,
+  calendarDate: '',
+  selectedDate: '',
 };
 
 export default (state = InitialState, action: Actions): IState => {
@@ -38,6 +40,17 @@ export default (state = InitialState, action: Actions): IState => {
 
     case 'SELECTED_GOAL':
       return { ...state, selectedGoal: payload as IGoal | null };
+
+    case 'SET_CALENDAR_DATE':
+      return {
+        ...state,
+        calendarDate: payload as string,
+      };
+    case 'SET_SELECTED_DATE':
+      return {
+        ...state,
+        selectedDate: payload as string,
+      };
     default:
       return state;
   }
