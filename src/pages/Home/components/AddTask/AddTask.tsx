@@ -38,7 +38,7 @@ const AddTask: React.FC<Props> = ({ onClose }) => {
       dispatch(
         addTask({
           id: Date.now(),
-          date: state.calendarDate,
+          date: state.selectedDate,
           checked: false,
           ...values,
         })

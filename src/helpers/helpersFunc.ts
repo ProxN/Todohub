@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { IGoal } from '../store/types';
+import { IGoal, ITask } from '../store/types';
 
 const getCurrentMonthGoals = (goals: IGoal[], date: string): IGoal[] => {
   const month = dayjs(date).month();
@@ -15,4 +15,13 @@ const getCurrentMonthGoals = (goals: IGoal[], date: string): IGoal[] => {
   return results;
 };
 
-export { getCurrentMonthGoals };
+const getCurrentTasks = (tasks: ITask[], date: string): ITask[] => {
+  const results: ITask[] = [];
+
+  tasks.forEach((el) => {
+    if (el.date === date) results.push(el);
+  });
+
+  return results;
+};
+export { getCurrentMonthGoals, getCurrentTasks };

@@ -41,3 +41,19 @@ export const TasksList = styled.div`
   max-height: 100%;
   overflow-y: auto;
 `;
+
+export const Emptytasks = styled.div`
+  ${({ theme }) => css`
+    background: ${theme.colors.primary.mid};
+    font-size: ${theme.fontSizes.medium};
+    font-family: ${theme.fonts.secondary};
+  `};
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+`;

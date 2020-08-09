@@ -29,6 +29,7 @@ const useCalendar = (): IUseCalendar => {
 
   useEffect(() => {
     dispatch(setDate(date.format('MM-DD-YYYY')));
+    dispatch(setSelectedDate(date.format('MM-DD-YYYY')));
   }, [dispatch]);
 
   const calendar = getCalendar(calendarDate);
@@ -57,7 +58,10 @@ const useCalendar = (): IUseCalendar => {
       dispatch(setSelectedDate(prevSelected));
       setDateKey(`p${day}-${month + -1}-${year}`);
     } else if (type === 'curr') {
-      dispatch(setSelectedDate(calendarDate));
+      const currDate = dayjs(calendarDate)
+        .set('date', day)
+        .format('MM-DD-YYYY');
+      dispatch(setSelectedDate(currDate));
 
       setDateKey(`c${day}-${month}-${year}`);
     } else if (type === 'next') {
