@@ -22,7 +22,7 @@ export const HomeContent = styled.div`
 
 export const DashGrid = styled.div`
   display: grid;
-  grid-template-columns: 350px 1fr 300px;
+  grid-template-columns: 350px 1fr 250px;
   margin-top: 15px;
   flex: 1;
   overflow: hidden;

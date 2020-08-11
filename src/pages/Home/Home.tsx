@@ -1,8 +1,9 @@
 import React from 'react';
 import Goals from './components/Goals/Goals';
 import Calendar from '../../components/Calendar';
-import { HomeMessage, HomeContent, DashGrid, LeftCol } from './Home.styles';
 import Tasks from './components/Tasks/Tasks';
+import Clock from './components/Clock/Clock';
+import { HomeMessage, HomeContent, DashGrid, LeftCol } from './Home.styles';
 
 const Home: React.FC = () => {
   return (
@@ -18,6 +19,9 @@ const Home: React.FC = () => {
             <Goals />
           </LeftCol>
           <Tasks />
+          <div>
+            <Clock />
+          </div>
         </DashGrid>
       </HomeContent>
     </section>

@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { Context } from '../../../../context/app.context';
 import Icon from '../../../../components/Icon';
 import Task from '../Task/Task';
+import useFormToggle from '../../../../hooks/useFormToggle';
+import AddTask from '../AddTask/AddTask';
+import { getCurrentTasks, getDay } from '../../../../helpers/helpersFunc';
 import {
   TasksContainer,
   TasksHeader,
@@ -11,21 +14,21 @@ import {
   TasksList,
   Emptytasks,
 } from './Tasks.styles';
-import useFormToggle from '../../../../hooks/useFormToggle';
-import AddTask from '../AddTask/AddTask';
-import { getCurrentTasks } from '../../../../helpers/helpersFunc';
 
 const Tasks: React.FC = () => {
   const { state } = useContext(Context);
   const { handleClose, handleOpen, isOpen } = useFormToggle();
 
+  const day = getDay(state.selectedDate);
   return (
     <>
       <TasksContainer>
         <TasksHeader>
           <TasksHeading>
             Today&apos;s schedule
-            <TaskSubHeading>Thursday 11</TaskSubHeading>
+            <TaskSubHeading>
+              {day.name} {day.day}
+            </TaskSubHeading>
           </TasksHeading>
           <AddTaskButton onClick={handleOpen}>
             <Icon name='plus' />
