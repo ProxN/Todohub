@@ -30,7 +30,7 @@ const Theme: DefaultTheme = {
     regular: '16px',
     medium: '20px',
     large: '28px',
-    h1: '40px',
+    h1: '50px',
     h2: '28px',
     h3: '22px',
   },

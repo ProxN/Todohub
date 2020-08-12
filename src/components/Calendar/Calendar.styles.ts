@@ -10,6 +10,7 @@ export const CalendarContainer = styled.div`
   padding: 10px 15px;
   background: ${({ theme }) => theme.colors.primary.mid};
   border-radius: 4px;
+  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.1);
 `;
 
 export const CalendarHeader = styled.div`

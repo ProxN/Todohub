@@ -12,7 +12,7 @@ import {
   TaskSubHeading,
   AddTaskButton,
   TasksList,
-  Emptytasks,
+  EmptyTasks,
 } from './Tasks.styles';
 
 const Tasks: React.FC = () => {
@@ -35,12 +35,12 @@ const Tasks: React.FC = () => {
           </AddTaskButton>
         </TasksHeader>
         <TasksList>
-          {state.tasks.length > 0 ? (
+          {getCurrentTasks(state.tasks, state.selectedDate).length > 0 ? (
             getCurrentTasks(state.tasks, state.selectedDate).map((el) => (
               <Task data={el} />
             ))
           ) : (
-            <Emptytasks>Add New Task</Emptytasks>
+            <EmptyTasks>Add New Task</EmptyTasks>
           )}
         </TasksList>
       </TasksContainer>

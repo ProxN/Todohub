@@ -6,6 +6,9 @@ import { ReactComponent as ArrowNext } from '../../assets/icons/arrowNext.svg';
 import { ReactComponent as ArrowBack } from '../../assets/icons/arrowBack.svg';
 import { ReactComponent as Close } from '../../assets/icons/close.svg';
 import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
+import { ReactComponent as ClockIcon } from '../../assets/icons/clock.svg';
+import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
+import { ReactComponent as VolumeIcon } from '../../assets/icons/volume.svg';
 
 const icons: { [key: string]: React.FC } = {
   document: DocIcon,
@@ -16,6 +19,9 @@ const icons: { [key: string]: React.FC } = {
   arrowBack: ArrowBack,
   close: Close,
   plus: PlusIcon,
+  clock: ClockIcon,
+  play: PlayIcon,
+  volume: VolumeIcon,
 };
 
 export default icons;

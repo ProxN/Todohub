@@ -42,8 +42,7 @@ export const GoalsList = styled.div`
 export const EmptyGoals = styled.div`
   ${({ theme }) => css`
     background: ${theme.colors.primary.mid};
-    font-size: ${theme.fontSizes.medium};
-    font-family: ${theme.fonts.secondary};
+    font-size: ${theme.fontSizes.regular};
   `};
   font-weight: 700;
   border-radius: 12px;
@@ -52,5 +51,5 @@ export const EmptyGoals = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.1);
 `;

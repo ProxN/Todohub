@@ -6,6 +6,7 @@ export const ClockBox = styled.div`
   border-radius: 4px;
   display: flex;
   justify-content: center;
+  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.1);
 `;
 
 export const ClockText = styled.div`

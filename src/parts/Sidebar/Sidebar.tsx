@@ -16,8 +16,8 @@ const Sidebar: React.FC = () => {
             <MenuLink href='/'>
               <Icon size='md' name='home' />
             </MenuLink>
-            <MenuLink href='/poro'>
-              <Icon size='md' name='document' />
+            <MenuLink href='/pomodoro'>
+              <Icon size='md' name='clock' />
             </MenuLink>
           </MenuLinks>
         </div>

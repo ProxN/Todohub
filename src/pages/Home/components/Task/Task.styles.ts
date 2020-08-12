@@ -7,7 +7,7 @@ export const TaskBox = styled.div`
   align-items: center;
   background: ${({ theme }) => theme.colors.primary.mid};
   cursor: pointer;
-  box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.1);
   margin: 10px 0;
 `;
 
