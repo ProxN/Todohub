@@ -12,8 +12,16 @@ import {
   VolumeButton,
 } from './Pomodoro.styles';
 import Icon from '../../components/Icon';
+import useTimer from '../../hooks/useTimer';
+
+// const leadingZero = (num: number): string | number => {
+//   return num < 10 ? `0${num}` : num;
+// };
 
 const Pomodoro: React.FC = () => {
+  const { state, StartTimer, StopTimer } = useTimer();
+
+  const { isRunning, count, cycle, settings } = state;
   return (
     <PomodoroContainer>
       <PomodoroContent>
@@ -26,16 +34,16 @@ const Pomodoro: React.FC = () => {
           </SettingsButton>
         </PomodoroActions>
         <TimerContainer>
-          <TimerTitle>Pomodoro</TimerTitle>
-          <Timer>10:00</Timer>
+          <TimerTitle>{cycle}</TimerTitle>
+          <Timer>{state.timerDisplay}</Timer>
         </TimerContainer>
         <PomodoroActions>
           <PomodoroReset>
-            1/4
+            {count}/{settings.rounds}
             <span>Reset</span>
           </PomodoroReset>
-          <PlayButton>
-            <Icon name='play' />
+          <PlayButton onClick={!isRunning ? StartTimer : StopTimer}>
+            <Icon name={isRunning ? 'pause' : 'play'} />
           </PlayButton>
         </PomodoroActions>
       </PomodoroContent>

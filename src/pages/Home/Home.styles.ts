@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-export const HomeMessage = styled.h1`
+export const HomeMessage = styled.h2`
   ${({ theme }) => css`
     color: ${theme.colors.gray.light};
-    font-size: ${theme.fontSizes.h1};
+    font-size: ${theme.fontSizes.h2};
     span {
       color: ${theme.colors.secondary.light};
     }

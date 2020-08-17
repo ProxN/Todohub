@@ -9,26 +9,31 @@ export const PomodoroContainer = styled.div`
 `;
 
 export const PomodoroContent = styled.div`
+  ${({ theme }) => css`
+    background: ${theme.colors.primary.mid};
+    border: 2px solid ${theme.colors.primary.light};
+  `};
+
   width: 350px;
+  height: 210px;
   padding: 10px 15px;
-  background: ${({ theme }) => theme.colors.primary.mid};
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  border: 2px solid ${({ theme }) => theme.colors.primary.light};
   position: relative;
-  ::before {
+
+  /* ::before {
     content: '';
     position: absolute;
-    border: 2px solid ${({ theme }) => theme.colors.secondary.light};
-    top: -2px;
-    left: -2px;
-    bottom: -2px;
-    width: 35%;
-    border-radius: 4px;
-    height: 100%;
     width: 100%;
-  }
+    height: 100%;
+    top: -2px;
+    left: 0;
+    border-top: 2px solid red;
+    width: 1%;
+    border-right: 2px solid red;
+    height: 1%;
+  } */
 `;
 
 export const SettingsButton = styled.div`
@@ -43,8 +48,10 @@ export const TimerContainer = styled.div`
 `;
 
 export const TimerTitle = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.medium};
-  color: ${({ theme }) => theme.colors.red};
+  ${({ theme }) => css`
+    font-size: ${theme.fontSizes.medium};
+    color: ${theme.colors.red};
+  `};
 `;
 
 export const Timer = styled.h1`
@@ -69,7 +76,6 @@ export const PomodoroReset = styled.div`
 
 export const PlayButton = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.gray.light};
-  /* opacity: 0.9; */
   border-radius: 50%;
 
   width: 30px;
@@ -83,4 +89,6 @@ export const PlayButton = styled.div`
   }
 `;
 
-export const VolumeButton = styled.div``;
+export const VolumeButton = styled.div`
+  cursor: pointer;
+`;

@@ -16,14 +16,14 @@ const Sidebar: React.FC = () => {
             <MenuLink href='/'>
               <Icon size='md' name='home' />
             </MenuLink>
-            <MenuLink href='/pomodoro'>
+            {/* <MenuLink href='/pomodoro'>
               <Icon size='md' name='clock' />
-            </MenuLink>
+            </MenuLink> */}
           </MenuLinks>
         </div>
-        <MenuLinks>
+        {/* <MenuLinks>
           <Icon size='md' name='settings' />
-        </MenuLinks>
+        </MenuLinks> */}
       </Nav>
     </HeaderContainer>
   );
