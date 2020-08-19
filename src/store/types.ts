@@ -10,6 +10,8 @@ const SELECTED_TASK = 'SELECTED_TASK';
 const TOGGLE_GOAL = 'TOGGLE_GOAL';
 const SET_CALENDAR_DATE = 'SET_CALENDAR_DATE';
 const SET_SELECTED_DATE = 'SET_SELECTED_DATE';
+const SHOW_MODAL = 'SHOW_MODAL';
+const HIDE_MODAL = 'HIDE_MODAL';
 
 export interface IGoal {
   id: number;
@@ -48,6 +50,13 @@ export interface IEditTAsk {
   };
 }
 
+export interface IModal {
+  body: string | React.ReactElement;
+  modalType: 'default' | 'delete';
+  isOpen: boolean;
+  title: string;
+}
+
 export interface IState {
   goals: IGoal[];
   tasks: ITask[];
@@ -55,6 +64,7 @@ export interface IState {
   selectedTask: ITask | null;
   calendarDate: string;
   selectedDate: string;
+  modal?: IModal | null;
 }
 
 interface AddGoalAction {
@@ -116,6 +126,16 @@ interface SelectedTask {
   payload: ITask | null;
 }
 
+interface ShowModal {
+  type: typeof SHOW_MODAL;
+  payload: IModal | null;
+}
+
+interface HideModal {
+  type: typeof HIDE_MODAL;
+  payload: null;
+}
+
 export type Actions =
   | AddGoalAction
   | RemoveGoalAction
@@ -128,4 +148,6 @@ export type Actions =
   | EditTaskAction
   | RemoveTaskAction
   | ToggleTaskAction
-  | SelectedTask;
+  | SelectedTask
+  | ShowModal
+  | HideModal;

@@ -21,6 +21,8 @@ declare module 'styled-components' {
         light2: string;
       };
       red: string;
+      green: string;
+      blue: string;
       //   dark: {
       //     dark: string;
       //     mid: string;

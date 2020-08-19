@@ -1,13 +1,12 @@
 import { useReducer, useEffect, Dispatch } from 'react';
 import { IState, Actions } from '../store/types';
+// import { ITimerState } from './useTimer';
 
 interface IUseLocalArgs {
   key: string;
-
   reducer: (state: IState, actions: Actions) => IState;
   initialState: IState;
 }
-
 interface IUseLocalStorage {
   state: IState;
   dispatch: Dispatch<Actions>;
@@ -18,6 +17,9 @@ const useLocalStorage = ({
   reducer,
   initialState,
 }: IUseLocalArgs): IUseLocalStorage => {
+  const stateWithoutModal = { ...initialState };
+
+  stateWithoutModal.modal = undefined;
   const [state, dispatch] = useReducer(reducer, initialState, () => {
     let value: IState;
 
@@ -32,8 +34,8 @@ const useLocalStorage = ({
   });
 
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(state));
-  }, [key, state]);
+    window.localStorage.setItem(key, JSON.stringify(stateWithoutModal));
+  }, [key, stateWithoutModal]);
 
   return { state, dispatch };
 };

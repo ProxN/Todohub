@@ -19,6 +19,8 @@ const Theme: DefaultTheme = {
       light2: '#fbfbfb',
     },
     red: '#eb3b5a',
+    green: '#1abc9c',
+    blue: '#3498db',
   },
   fonts: {
     primary: 'Mulish, sans-serif',

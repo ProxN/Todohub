@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components';
 
+interface PropStyles {
+  cycle?: string;
+}
+
 export const PomodoroContainer = styled.div`
   height: 100%;
   width: 100%;
@@ -47,11 +51,16 @@ export const TimerContainer = styled.div`
   text-align: center;
 `;
 
-export const TimerTitle = styled.div`
-  ${({ theme }) => css`
+export const TimerTitle = styled.div<PropStyles>`
+  ${({ theme, cycle }) => css`
     font-size: ${theme.fontSizes.medium};
-    color: ${theme.colors.red};
+    color: ${cycle === 'work'
+      ? theme.colors.red
+      : cycle === 'short break'
+      ? theme.colors.green
+      : theme.colors.blue};
   `};
+  text-transform: capitalize;
 `;
 
 export const Timer = styled.h1`
@@ -68,10 +77,11 @@ export const PomodoroActions = styled.div`
 export const PomodoroReset = styled.div`
   text-align: center;
   opacity: 0.8;
-  span {
-    display: block;
-    cursor: pointer;
-  }
+`;
+
+export const ResetBtn = styled.div`
+  display: block;
+  cursor: pointer;
 `;
 
 export const PlayButton = styled.div`

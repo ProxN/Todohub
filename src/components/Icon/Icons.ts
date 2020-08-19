@@ -10,6 +10,7 @@ import { ReactComponent as ClockIcon } from '../../assets/icons/clock.svg';
 import { ReactComponent as PlayIcon } from '../../assets/icons/play.svg';
 import { ReactComponent as VolumeIcon } from '../../assets/icons/volume.svg';
 import { ReactComponent as PauseIcon } from '../../assets/icons/pause.svg';
+import { ReactComponent as MuteIcon } from '../../assets/icons/mute.svg';
 
 const icons: { [key: string]: React.FC } = {
   document: DocIcon,
@@ -24,6 +25,7 @@ const icons: { [key: string]: React.FC } = {
   play: PlayIcon,
   pause: PauseIcon,
   volume: VolumeIcon,
+  mute: MuteIcon,
 };
 
 export default icons;

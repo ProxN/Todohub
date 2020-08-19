@@ -1,4 +1,12 @@
-import { IState, Actions, IGoal, IEditGoal, ITask, IEditTAsk } from './types';
+import {
+  IState,
+  Actions,
+  IGoal,
+  IEditGoal,
+  ITask,
+  IEditTAsk,
+  IModal,
+} from './types';
 
 export const InitialState: IState = {
   goals: [],
@@ -7,6 +15,7 @@ export const InitialState: IState = {
   selectedTask: null,
   calendarDate: '',
   selectedDate: '',
+  modal: undefined,
 };
 
 export default (state = InitialState, action: Actions): IState => {
@@ -85,6 +94,17 @@ export default (state = InitialState, action: Actions): IState => {
       return {
         ...state,
         selectedTask: payload as ITask,
+      };
+
+    case 'SHOW_MODAL':
+      return {
+        ...state,
+        modal: payload as IModal,
+      };
+    case 'HIDE_MODAL':
+      return {
+        ...state,
+        modal: null,
       };
     default:
       return state;

@@ -1,17 +1,18 @@
 import { useEffect, useReducer } from 'react';
-import { settings } from 'cluster';
 
 const SET_TIMER = 'SET_TIMER';
 const TOGGLE_TIMER = 'TOGGLE_TIMER';
 const SET_SHORT_BREAK = 'SET_SHORT_BREAK';
 const SET_WORK_TIMER = 'SET_WORK_TIMER';
 const SET_LONG_BREAK = 'SET_LONG_BREAK';
+const RESET_TIMER = 'RESET_TIMER';
+const TOGGLE_SOUND = 'TOGGLE_SOUND';
 
 /**
  * Types
  */
 
-interface ITimerState {
+export interface ITimerState {
   settings: {
     work: number;
     shortBreak: number;
@@ -23,12 +24,15 @@ interface ITimerState {
   timer: number;
   isRunning: boolean;
   timerDisplay: string;
+  notification: boolean;
 }
 
 interface IUseTimer {
   state: ITimerState;
   StartTimer: () => void;
   StopTimer: () => void;
+  Reset: () => void;
+  ToggleSound: () => void;
 }
 
 interface SetTimer {
@@ -56,12 +60,24 @@ interface SetLongBreak {
   payload: number;
 }
 
-type Actions =
+interface ResetTimer {
+  type: typeof RESET_TIMER;
+  payload?: any;
+}
+
+interface ToggleNotification {
+  type: typeof TOGGLE_SOUND;
+  payload: boolean;
+}
+
+export type Actions =
   | SetTimer
   | Toggletimer
   | SetShortBreak
   | SetWorkTimer
-  | SetLongBreak;
+  | SetLongBreak
+  | ResetTimer
+  | ToggleNotification;
 
 /**
  * Actions
@@ -102,6 +118,20 @@ const setLongBreak = (time: number): Actions => {
   };
 };
 
+const resetTimer = (): Actions => {
+  return {
+    type: 'RESET_TIMER',
+    payload: '',
+  };
+};
+
+const toggleSound = (toggler: boolean): Actions => {
+  return {
+    type: 'TOGGLE_SOUND',
+    payload: toggler,
+  };
+};
+
 /**
  * helpers
  */
@@ -133,6 +163,7 @@ const InitialState: ITimerState = {
   count: 1,
   timer: 60,
   isRunning: false,
+  notification: true,
 };
 
 const reducer = (state = InitialState, actions: Actions): ITimerState => {
@@ -186,6 +217,24 @@ const reducer = (state = InitialState, actions: Actions): ITimerState => {
       };
     }
 
+    case 'RESET_TIMER': {
+      const currentTimer = state.settings.work * 60;
+      return {
+        ...state,
+        timer: currentTimer,
+        timerDisplay: formatTime(currentTimer),
+        cycle: 'work',
+        count: 1,
+        isRunning: false,
+      };
+    }
+
+    case 'TOGGLE_SOUND':
+      return {
+        ...state,
+        notification: payload as boolean,
+      };
+
     default:
       return state;
   }
@@ -197,9 +246,24 @@ const reducer = (state = InitialState, actions: Actions): ITimerState => {
 
 const useTimer = (): IUseTimer => {
   const [state, dispatch] = useReducer(reducer, InitialState);
-
   const { isRunning, timer, cycle, settings, count } = state;
   const { shortBreak, work, rounds, longBreak } = settings;
+
+  const handlePlayAudio = (): void => {
+    if (state.notification) {
+      // eslint-disable-next-line global-require
+      const audio = new Audio(require('../assets/swiftly.mp3'));
+      audio.play();
+      const interval = setInterval(() => {
+        audio.currentTime = 0;
+      }, 1000);
+
+      setTimeout(() => {
+        audio.pause();
+        clearInterval(interval);
+      }, 5000);
+    }
+  };
 
   useEffect(() => {
     let interval: number;
@@ -208,12 +272,16 @@ const useTimer = (): IUseTimer => {
         if (timer === 0) {
           if (cycle === 'work' && count === rounds) {
             dispatch(setLongBreak(longBreak * 60));
+            handlePlayAudio();
           } else if (cycle === 'work') {
             dispatch(setShortBreak(shortBreak * 60));
+            handlePlayAudio();
           } else if (cycle.startsWith('short')) {
             dispatch(setWorkTimer(work * 60));
+            handlePlayAudio();
           } else if (cycle.startsWith('long')) {
             dispatch(setWorkTimer(work * 60));
+            handlePlayAudio();
           }
           return;
         }
@@ -231,11 +299,18 @@ const useTimer = (): IUseTimer => {
     dispatch(toggleTimer(true));
   };
 
+  const ToggleSound = (): void => {
+    dispatch(toggleSound(!state.notification));
+  };
+
   const StopTimer = (): void => {
     dispatch(toggleTimer(false));
   };
 
-  return { state, StartTimer, StopTimer };
+  const Reset = (): void => {
+    dispatch(resetTimer());
+  };
+  return { state, StartTimer, StopTimer, Reset, ToggleSound };
 };
 
 export default useTimer;

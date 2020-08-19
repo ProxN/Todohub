@@ -11,13 +11,13 @@ export const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 25px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 25px -3px rgba(0, 0, 0, 0.4);
 `;
 
 export const ModalContent = styled.div`
-  width: 300px;
   background: ${({ theme }) => theme.colors.primary.mid};
   border-radius: 4px;
+  margin-left: 70px;
 `;
 
 export const ModalHeader = styled.div`

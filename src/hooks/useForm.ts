@@ -12,7 +12,14 @@ interface TaskForm {
   end: string;
 }
 
-type FormTypes = GoalForm | TaskForm;
+interface TimerSettings {
+  longBreak: string | number;
+  shortBreak: string | number;
+  rounds: string | number;
+  work: string | number;
+}
+
+type FormTypes = GoalForm | TaskForm | TimerSettings;
 
 interface IUseForm<T> {
   values: T;

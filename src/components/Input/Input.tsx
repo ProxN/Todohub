@@ -5,11 +5,13 @@ interface Props {
   fullWidth?: boolean;
   rounded?: boolean;
   placeholder?: string;
-  type?: 'text' | 'email' | 'password' | 'time';
+  type?: 'text' | 'email' | 'password' | 'time' | 'number';
   name?: string;
   textarea?: boolean;
   label?: string;
-  value?: string;
+  value?: string | number;
+  min?: string;
+  max?: string;
   onChange?: (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => void;
