@@ -6,6 +6,7 @@ import {
   ITask,
   IEditTAsk,
   IModal,
+  ISettings,
 } from './types';
 
 export const InitialState: IState = {
@@ -16,6 +17,9 @@ export const InitialState: IState = {
   calendarDate: '',
   selectedDate: '',
   modal: undefined,
+  settings: {
+    name: '###',
+  },
 };
 
 export default (state = InitialState, action: Actions): IState => {
@@ -106,6 +110,8 @@ export default (state = InitialState, action: Actions): IState => {
         ...state,
         modal: null,
       };
+    case 'UPDATE_SETTINGS':
+      return { ...state, settings: payload as ISettings };
     default:
       return state;
   }

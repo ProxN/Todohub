@@ -1,4 +1,5 @@
 import { useState, useCallback, ChangeEvent } from 'react';
+import { ISettings } from '../store/types';
 
 interface GoalForm {
   goal: string;
@@ -19,7 +20,7 @@ interface TimerSettings {
   work: string | number;
 }
 
-type FormTypes = GoalForm | TaskForm | TimerSettings;
+type FormTypes = GoalForm | TaskForm | TimerSettings | ISettings;
 
 interface IUseForm<T> {
   values: T;

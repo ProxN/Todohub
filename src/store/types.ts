@@ -12,6 +12,7 @@ const SET_CALENDAR_DATE = 'SET_CALENDAR_DATE';
 const SET_SELECTED_DATE = 'SET_SELECTED_DATE';
 const SHOW_MODAL = 'SHOW_MODAL';
 const HIDE_MODAL = 'HIDE_MODAL';
+const UPDATE_SETTINGS = 'UPDATE_SETTINGS';
 
 export interface IGoal {
   id: number;
@@ -57,6 +58,10 @@ export interface IModal {
   title: string;
 }
 
+export interface ISettings {
+  name: string;
+}
+
 export interface IState {
   goals: IGoal[];
   tasks: ITask[];
@@ -65,6 +70,7 @@ export interface IState {
   calendarDate: string;
   selectedDate: string;
   modal?: IModal | null;
+  settings: ISettings;
 }
 
 interface AddGoalAction {
@@ -136,6 +142,11 @@ interface HideModal {
   payload: null;
 }
 
+interface UpdateSettings {
+  type: typeof UPDATE_SETTINGS;
+  payload: ISettings;
+}
+
 export type Actions =
   | AddGoalAction
   | RemoveGoalAction
@@ -150,4 +161,5 @@ export type Actions =
   | ToggleTaskAction
   | SelectedTask
   | ShowModal
-  | HideModal;
+  | HideModal
+  | UpdateSettings;

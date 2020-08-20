@@ -23,7 +23,13 @@ const Input: React.FC<Props> = (props) => {
     <InputContainer>
       {label && <Label htmlFor={name}>{label}</Label>}
       {!textarea ? (
-        <StyledInput id={name} name={name} fullWidth={fullWidth} {...rest} />
+        <StyledInput
+          id={name}
+          name={name}
+          fullWidth={fullWidth}
+          autoComplete='off'
+          {...rest}
+        />
       ) : (
         <TextArea
           rows={3}

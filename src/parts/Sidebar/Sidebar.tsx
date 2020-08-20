@@ -21,9 +21,11 @@ const Sidebar: React.FC = () => {
             </MenuLink>
           </MenuLinks>
         </div>
-        {/* <MenuLinks>
-          <Icon size='md' name='settings' />
-        </MenuLinks> */}
+        <MenuLinks>
+          <MenuLink href='/settings'>
+            <Icon size='md' name='settings' />
+          </MenuLink>
+        </MenuLinks>
       </Nav>
     </HeaderContainer>
   );

@@ -1,4 +1,12 @@
-import { Actions, IGoal, IEditGoal, ITask, IEditTAsk, IModal } from './types';
+import {
+  Actions,
+  IGoal,
+  IEditGoal,
+  ITask,
+  IEditTAsk,
+  IModal,
+  ISettings,
+} from './types';
 
 export const addGoal = (Goal: IGoal): Actions => {
   return {
@@ -95,5 +103,12 @@ export const HideModal = (): Actions => {
   return {
     type: 'HIDE_MODAL',
     payload: null,
+  };
+};
+
+export const UpdateSettings = (body: ISettings): Actions => {
+  return {
+    type: 'UPDATE_SETTINGS',
+    payload: body,
   };
 };

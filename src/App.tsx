@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Pomodoro from './pages/Pomodoro';
 import Layout from './parts/Layout';
 import AppContext from './context/app.context';
+import Settings from './pages/Settings';
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,8 @@ const App: React.FC = () => {
         <Switch>
           <Route path='/' component={Home} exact />
           <Route path='/pomodoro' component={Pomodoro} exact />
+          <Route path='/pomodoro' component={Pomodoro} exact />
+          <Route path='/settings' component={Settings} exact />
           <Redirect to='/' />
         </Switch>
       </Layout>
