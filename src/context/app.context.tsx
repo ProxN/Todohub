@@ -10,11 +10,11 @@ export const Context = createContext<{
 
 const AppContext: React.FC = ({ children }) => {
   // const [state, dispatch] = useReducer(appReducer, InitialState);
-  const { state, dispatch } = useLocalStorage({
-    key: 'state',
-    reducer: appReducer,
-    initialState: InitialState,
-  });
+  const { state, dispatch } = useLocalStorage(
+    'state',
+    appReducer,
+    InitialState
+  );
   return (
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   );

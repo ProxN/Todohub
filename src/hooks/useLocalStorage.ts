@@ -1,41 +1,38 @@
 import { useReducer, useEffect, Dispatch } from 'react';
 import { IState, Actions } from '../store/types';
-// import { ITimerState } from './useTimer';
+import { ITimerState, Actions as TimerActions } from '../types/timer.types';
 
-interface IUseLocalArgs {
-  key: string;
-  reducer: (state: IState, actions: Actions) => IState;
-  initialState: IState;
-}
-interface IUseLocalStorage {
-  state: IState;
-  dispatch: Dispatch<Actions>;
+type ILocalState = IState | ITimerState;
+type ILocalActions = Actions | TimerActions;
+
+interface IUseLocalStorage<S, A> {
+  state: S;
+  dispatch: Dispatch<A>;
 }
 
-const useLocalStorage = ({
-  key,
-  reducer,
-  initialState,
-}: IUseLocalArgs): IUseLocalStorage => {
-  const stateWithoutModal = { ...initialState };
-
-  stateWithoutModal.modal = undefined;
+const useLocalStorage = <S extends ILocalState, A extends ILocalActions>(
+  key: string,
+  reducer: (state: S, actions: A) => S,
+  initialState: S
+): IUseLocalStorage<S, A> => {
+  Reflect.deleteProperty(initialState, 'modal');
   const [state, dispatch] = useReducer(reducer, initialState, () => {
-    let value: IState;
+    let value: S;
 
     try {
       value = JSON.parse(
         window.localStorage.getItem(key) || String(initialState)
-      ) as IState;
+      ) as S;
     } catch (error) {
       value = initialState;
     }
+    Reflect.deleteProperty(value, 'modal');
     return value;
   });
 
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(stateWithoutModal));
-  }, [key, stateWithoutModal]);
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
 
   return { state, dispatch };
 };
