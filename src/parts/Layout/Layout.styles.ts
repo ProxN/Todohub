@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Media } from '../../styles';
 
 export const LayoutContainer = styled.div`
   width: 100%;
@@ -7,5 +8,11 @@ export const LayoutContainer = styled.div`
 
 export const ChildrenWrapper = styled.main`
   display: grid;
-  grid-template-columns: 70px 1fr;
+  grid-template-columns: 1fr;
+  section {
+    margin-left: 70px;
+    ${Media.thone} {
+      margin: 0;
+    }
+  }
 `;

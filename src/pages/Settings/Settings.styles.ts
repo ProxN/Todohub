@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Media } from '../../styles';
 
 export const SettingsContent = styled.div`
   margin: 25px 0;
@@ -7,6 +8,12 @@ export const SettingsContent = styled.div`
 
 export const LeftPanel = styled.div`
   width: 20%;
+  ${Media.tablet} {
+    width: 40%;
+  }
+  ${Media.thone} {
+    width: 100%;
+  }
 `;
 
 export const PanelActions = styled.div`

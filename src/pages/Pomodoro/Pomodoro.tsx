@@ -58,31 +58,33 @@ const Pomodoro: React.FC = () => {
 
   return (
     <>
-      <PomodoroContainer>
-        <PomodoroContent>
-          <PomodoroActions>
-            <VolumeButton onClick={ToggleSound}>
-              <Icon name={notification ? 'volume' : 'mute'} />
-            </VolumeButton>
-            <SettingsButton onClick={handleSettingsClick}>
-              <Icon name='settings' />
-            </SettingsButton>
-          </PomodoroActions>
-          <TimerContainer>
-            <TimerTitle cycle={cycle}>{cycle}</TimerTitle>
-            <Timer>{state.timerDisplay}</Timer>
-          </TimerContainer>
-          <PomodoroActions>
-            <PomodoroReset>
-              {count}/{settings.rounds}
-              <ResetBtn onClick={Reset}>Reset</ResetBtn>
-            </PomodoroReset>
-            <PlayButton onClick={!isRunning ? StartTimer : StopTimer}>
-              <Icon name={isRunning ? 'pause' : 'play'} />
-            </PlayButton>
-          </PomodoroActions>
-        </PomodoroContent>
-      </PomodoroContainer>
+      <section>
+        <PomodoroContainer>
+          <PomodoroContent>
+            <PomodoroActions>
+              <VolumeButton onClick={ToggleSound}>
+                <Icon name={notification ? 'volume' : 'mute'} />
+              </VolumeButton>
+              <SettingsButton onClick={handleSettingsClick}>
+                <Icon name='settings' />
+              </SettingsButton>
+            </PomodoroActions>
+            <TimerContainer>
+              <TimerTitle cycle={cycle}>{cycle}</TimerTitle>
+              <Timer>{state.timerDisplay}</Timer>
+            </TimerContainer>
+            <PomodoroActions>
+              <PomodoroReset>
+                {count}/{settings.rounds}
+                <ResetBtn onClick={Reset}>Reset</ResetBtn>
+              </PomodoroReset>
+              <PlayButton onClick={!isRunning ? StartTimer : StopTimer}>
+                <Icon name={isRunning ? 'pause' : 'play'} />
+              </PlayButton>
+            </PomodoroActions>
+          </PomodoroContent>
+        </PomodoroContainer>
+      </section>
       {modal?.isOpen && <Modal />}
     </>
   );

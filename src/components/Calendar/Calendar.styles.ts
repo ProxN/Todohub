@@ -7,7 +7,7 @@ interface StylesProps {
 }
 
 export const CalendarContainer = styled.div`
-  padding: 10px 15px;
+  padding: 5px;
   background: ${({ theme }) => theme.colors.primary.mid};
   border-radius: 4px;
   box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.1);
@@ -34,7 +34,7 @@ export const IconBtn = styled.div`
 export const CalendarDays = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 8px;
+  grid-gap: 5px;
   margin-top: 15px;
 `;
 

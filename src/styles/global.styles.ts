@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
+import Media from './media';
 
 export default createGlobalStyle`
     *,
@@ -45,6 +46,9 @@ export default createGlobalStyle`
     section{
         padding:0px 50px;
         height:100vh;
+        ${Media.thone}{
+            padding:0 25px;
+        }
     }
 
     
