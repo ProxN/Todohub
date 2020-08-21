@@ -8,7 +8,7 @@
 
 > A time management app that helps you track your monthly goals and daily tasks.
 
-### 🏠 [Homepage](/https://todohub.netlify.app/)
+### 🏠 [Homepage](https://todohub.netlify.app/)
 
 ## Install
 
