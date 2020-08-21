@@ -1,24 +1,29 @@
 import React from 'react';
+import { TimerSettings } from '../../../../types/timer.types';
 import useForm from '../../../../hooks/useForm';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
 
 interface Props {
-  settings: {
-    work: number;
-    shortBreak: number;
-    longBreak: number;
-    rounds: number;
-  };
+  settings: TimerSettings;
+  updateSettingsHandler: (timerSettings: TimerSettings) => void;
+  hideModal: () => void;
 }
 
-const Settings: React.FC<Props> = ({ settings }) => {
-  const handleSubmit = (): void => {
-    console.log(values);
+const Settings: React.FC<Props> = ({
+  settings,
+  updateSettingsHandler,
+  hideModal,
+}) => {
+  const onSubmit = (): void => {
+    updateSettingsHandler(values);
+    hideModal();
   };
-  const { values, handleChange } = useForm(handleSubmit, { ...settings });
+  const { values, handleChange, handleSubmit } = useForm(onSubmit, {
+    ...settings,
+  });
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Input
         label='Work'
         type='number'

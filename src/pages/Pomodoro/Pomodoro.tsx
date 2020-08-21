@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../../context/app.context';
-import { showModal } from '../../store/actions';
+import { showModal, HideModal } from '../../store/actions';
 import Icon from '../../components/Icon';
 import useTimer from '../../hooks/useTimer';
 import {
@@ -20,7 +20,14 @@ import Modal from '../../components/Modal/Modal';
 import Settings from './components/Settings/Settings';
 
 const Pomodoro: React.FC = () => {
-  const { state, StartTimer, StopTimer, Reset, ToggleSound } = useTimer();
+  const {
+    state,
+    StartTimer,
+    StopTimer,
+    Reset,
+    ToggleSound,
+    UpdateTimerSettings,
+  } = useTimer();
   const {
     state: { modal },
     dispatch,
@@ -28,10 +35,20 @@ const Pomodoro: React.FC = () => {
 
   const { isRunning, count, cycle, settings, notification } = state;
 
+  const handleHideModal = (): void => {
+    dispatch(HideModal());
+  };
+
   const handleSettingsClick = (): void => {
     dispatch(
       showModal({
-        body: <Settings settings={settings} />,
+        body: (
+          <Settings
+            settings={settings}
+            hideModal={handleHideModal}
+            updateSettingsHandler={UpdateTimerSettings}
+          />
+        ),
         title: 'Timer Settings',
         isOpen: true,
         modalType: 'default',

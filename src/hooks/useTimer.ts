@@ -1,5 +1,10 @@
 import { useEffect } from 'react';
-import { Actions, ITimerState, IUseTimer } from '../types/timer.types';
+import {
+  Actions,
+  ITimerState,
+  IUseTimer,
+  TimerSettings,
+} from '../types/timer.types';
 import useLocalStorage from './useLocalStorage';
 
 /**
@@ -52,6 +57,13 @@ const toggleSound = (toggler: boolean): Actions => {
   return {
     type: 'TOGGLE_SOUND',
     payload: toggler,
+  };
+};
+
+const updateTimerSettings = (settings: TimerSettings): Actions => {
+  return {
+    type: 'UPDATE_TIMER_SETTINGS',
+    payload: settings,
   };
 };
 
@@ -158,6 +170,18 @@ const reducer = (state = InitialState, actions: Actions): ITimerState => {
         notification: payload as boolean,
       };
 
+    case 'UPDATE_TIMER_SETTINGS': {
+      const timerSettings = payload as TimerSettings;
+      const currentTimer = timerSettings.work * 60;
+      return {
+        ...state,
+        timer: currentTimer,
+        timerDisplay: formatTime(currentTimer),
+        isRunning: false,
+        count: 1,
+        settings: payload as TimerSettings,
+      };
+    }
     default:
       return state;
   }
@@ -226,6 +250,10 @@ const useTimer = (): IUseTimer => {
     dispatch(toggleTimer(true));
   };
 
+  const UpdateTimerSettings = (args: TimerSettings): void => {
+    dispatch(updateTimerSettings(args));
+  };
+
   const ToggleSound = (): void => {
     dispatch(toggleSound(!state.notification));
   };
@@ -237,7 +265,14 @@ const useTimer = (): IUseTimer => {
   const Reset = (): void => {
     dispatch(resetTimer());
   };
-  return { state, StartTimer, StopTimer, Reset, ToggleSound };
+  return {
+    state,
+    StartTimer,
+    StopTimer,
+    Reset,
+    ToggleSound,
+    UpdateTimerSettings,
+  };
 };
 
 export default useTimer;

@@ -5,18 +5,21 @@ const SET_WORK_TIMER = 'SET_WORK_TIMER';
 const SET_LONG_BREAK = 'SET_LONG_BREAK';
 const RESET_TIMER = 'RESET_TIMER';
 const TOGGLE_SOUND = 'TOGGLE_SOUND';
+const UPDATE_TIMER_SETTINGS = 'UPDATE_TIMER_SETTINGS';
 
 /**
  * Types
  */
 
+export interface TimerSettings {
+  work: number;
+  shortBreak: number;
+  longBreak: number;
+  rounds: number;
+}
+
 export interface ITimerState {
-  settings: {
-    work: number;
-    shortBreak: number;
-    longBreak: number;
-    rounds: number;
-  };
+  settings: TimerSettings;
   cycle: 'work' | 'short break' | 'long break';
   count: number;
   timer: number;
@@ -31,6 +34,7 @@ export interface IUseTimer {
   StopTimer: () => void;
   Reset: () => void;
   ToggleSound: () => void;
+  UpdateTimerSettings: (timerSettings: TimerSettings) => void;
 }
 
 interface SetTimer {
@@ -68,6 +72,11 @@ interface ToggleNotification {
   payload: boolean;
 }
 
+interface UpdateTimerSettings {
+  type: typeof UPDATE_TIMER_SETTINGS;
+  payload: TimerSettings;
+}
+
 export type Actions =
   | SetTimer
   | Toggletimer
@@ -75,4 +84,5 @@ export type Actions =
   | SetWorkTimer
   | SetLongBreak
   | ResetTimer
-  | ToggleNotification;
+  | ToggleNotification
+  | UpdateTimerSettings;

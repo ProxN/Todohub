@@ -4,7 +4,12 @@ import { UpdateSettings } from '../../store/actions';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import useForm from '../../hooks/useForm';
-import { SettingsContent, LeftPanel, PanelActions } from './Settings.styles';
+import {
+  SettingsContent,
+  LeftPanel,
+  PanelActions,
+  Heading,
+} from './Settings.styles';
 
 const Settings: React.FC = () => {
   const { dispatch } = useContext(Context);
@@ -18,6 +23,7 @@ const Settings: React.FC = () => {
   return (
     <section>
       <SettingsContent>
+        <Heading>Settings</Heading>
         <LeftPanel>
           <form onSubmit={handleSubmit}>
             <Input
