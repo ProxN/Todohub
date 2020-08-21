@@ -2,6 +2,9 @@
   "name": "todohub",
   "version": "0.1.0",
   "private": true,
+  "description": "A time management app that helps you track your monthly goals and daily tasks.",
+  "author": "Ayoub Kanoun",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -10,8 +13,9 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "styled-components": "^5.1.1",
     "typescript": "~3.7.2"
   },
