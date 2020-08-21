@@ -93,10 +93,10 @@ const InitialState: ITimerState = {
     longBreak: 20,
     rounds: 4,
   },
-  timerDisplay: '01:00',
+  timerDisplay: '25:00',
   cycle: 'work',
   count: 1,
-  timer: 60,
+  timer: 1500,
   isRunning: false,
   notification: true,
 };
