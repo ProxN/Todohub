@@ -88,10 +88,10 @@ const formatTime = (timeInSec: number): string => {
 
 const InitialState: ITimerState = {
   settings: {
-    work: 1,
-    shortBreak: 1,
-    longBreak: 1,
-    rounds: 2,
+    work: 25,
+    shortBreak: 5,
+    longBreak: 20,
+    rounds: 4,
   },
   timerDisplay: '01:00',
   cycle: 'work',
