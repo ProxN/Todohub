@@ -192,7 +192,7 @@ const reducer = (state = InitialState, actions: Actions): ITimerState => {
  */
 
 const useTimer = (): IUseTimer => {
-  const { state, dispatch } = useLocalStorage(
+  const { state, dispatch } = useLocalStorage<ITimerState, Actions>(
     'timer-settings',
     reducer,
     InitialState

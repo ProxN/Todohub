@@ -1,16 +1,12 @@
 import { useReducer, useEffect, Dispatch } from 'react';
-import { IState, Actions } from '../store/types';
-import { ITimerState, Actions as TimerActions } from '../types/timer.types';
-
-type ILocalState = IState | ITimerState;
-type ILocalActions = Actions | TimerActions;
 
 interface IUseLocalStorage<S, A> {
   state: S;
   dispatch: Dispatch<A>;
 }
 
-const useLocalStorage = <S extends ILocalState, A extends ILocalActions>(
+// eslint-disable-next-line @typescript-eslint/ban-types
+const useLocalStorage = <S extends object, A>(
   key: string,
   reducer: (state: S, actions: A) => S,
   initialState: S

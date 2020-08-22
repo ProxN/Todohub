@@ -10,7 +10,7 @@ export const Context = createContext<{
 
 const AppContext: React.FC = ({ children }) => {
   // const [state, dispatch] = useReducer(appReducer, InitialState);
-  const { state, dispatch } = useLocalStorage(
+  const { state, dispatch } = useLocalStorage<IState, Actions>(
     'state',
     appReducer,
     InitialState
