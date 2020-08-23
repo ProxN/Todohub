@@ -20,11 +20,14 @@ export const TasksHeading = styled.h3`
   line-height: 1.3;
 `;
 
-export const TaskSubHeading = styled.h4`
+export const TaskSubHeading = styled.span`
   ${({ theme }) => css`
     color: ${theme.colors.secondary.light};
     font-size: ${theme.fontSizes.medium};
+    font-family: ${theme.fonts.secondary};
   `};
+  font-weight: 700;
+  display: block;
 `;
 
 export const AddTaskButton = styled.div`

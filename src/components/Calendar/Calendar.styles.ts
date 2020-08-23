@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 interface StylesProps {
-  opacity?: boolean;
+  opacity?: number;
   curr?: boolean;
   selected?: boolean;
 }
@@ -59,7 +59,7 @@ export const CalendarDayBox = styled.div<StylesProps>`
       background: ${theme.colors.secondary.light};
       box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.2);
     `};
-  opacity: ${(props) => (props.opacity ? '0.5' : '0.9')};
+  opacity: ${(props) => (props.opacity === 1 ? '0.5' : '0.9')};
   border: 2px solid transparent;
   border-color: ${(props) =>
     props.selected && props.theme.colors.secondary.light};

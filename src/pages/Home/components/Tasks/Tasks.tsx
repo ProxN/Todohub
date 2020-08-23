@@ -37,7 +37,7 @@ const Tasks: React.FC = () => {
         <TasksList>
           {getCurrentTasks(state.tasks, state.selectedDate).length > 0 ? (
             getCurrentTasks(state.tasks, state.selectedDate).map((el) => (
-              <Task data={el} />
+              <Task data={el} key={el.id} />
             ))
           ) : (
             <EmptyTasks>Add New Task</EmptyTasks>

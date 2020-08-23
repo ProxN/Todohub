@@ -44,15 +44,17 @@ const Calendar: React.FC = () => {
         <CalendarDayName>Sat</CalendarDayName>
         {calendar.prev.map((el) => (
           <CalendarDayBox
+            key={generateKey('prev', el)}
             onClick={() => handleDayBoxClick('prev', el)}
             selected={generateKey('prev', el) === selectedDate.key}
-            opacity
+            opacity={1}
           >
             {el}
           </CalendarDayBox>
         ))}
         {calendar.this.map((el) => (
           <CalendarDayBox
+            key={generateKey('curr', el)}
             curr={el === calendar.currentDay}
             onClick={() => handleDayBoxClick('curr', el)}
             selected={generateKey('curr', el) === selectedDate.key}
@@ -62,9 +64,10 @@ const Calendar: React.FC = () => {
         ))}
         {calendar.next.map((el) => (
           <CalendarDayBox
+            key={generateKey('next', el)}
             onClick={() => handleDayBoxClick('next', el)}
             selected={generateKey('next', el) === selectedDate.key}
-            opacity
+            opacity={1}
           >
             {el}
           </CalendarDayBox>
