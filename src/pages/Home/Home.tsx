@@ -8,6 +8,7 @@ import { HomeMessage, HomeContent, DashGrid, LeftCol } from './Home.styles';
 
 const Home: React.FC = () => {
   const { state } = useContext(Context);
+
   return (
     <section>
       <HomeContent>

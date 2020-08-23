@@ -42,7 +42,6 @@ const getCalendar = (dateString: string): ICalendar => {
     calendar.next.push(i);
   }
 
-  console.log(dateString);
   if (dateString === dayjs().format('YYYY-MM-DD')) {
     calendar.currentDay = dayjs().date();
   }

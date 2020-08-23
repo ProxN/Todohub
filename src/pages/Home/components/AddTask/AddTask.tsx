@@ -21,7 +21,6 @@ const AddTask: React.FC<Props> = ({ onClose }) => {
   const { selectedTask } = state;
   const handleClose = (): void => {
     if (state.selectedTask) {
-      console.log('test');
       dispatch(setSeelctedTask(null));
     }
     onClose();
