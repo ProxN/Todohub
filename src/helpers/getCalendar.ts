@@ -21,6 +21,7 @@ const getCalendar = (dateString: string): ICalendar => {
   };
 
   const date = dayjs(dateString);
+
   const totalDays = date.daysInMonth();
   const firstDayIndex = date.startOf('month').day();
   const lastDayIndex = date.endOf('month').day();
@@ -41,7 +42,7 @@ const getCalendar = (dateString: string): ICalendar => {
     calendar.next.push(i);
   }
 
-  if (dateString === dayjs().format('MM-DD-YYYY')) {
+  if (dayjs(dateString).format('MM-DD-YYYY') === dayjs().format('MM-DD-YYYY')) {
     calendar.currentDay = dayjs().date();
   }
 

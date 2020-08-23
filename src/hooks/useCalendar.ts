@@ -28,24 +28,25 @@ const useCalendar = (): IUseCalendar => {
   const { calendarDate, selectedDate } = state;
 
   useEffect(() => {
-    dispatch(setDate(date.format('MM-DD-YYYY')));
-    dispatch(setSelectedDate(date.format('MM-DD-YYYY')));
+    dispatch(setDate(date.toISOString()));
+    dispatch(setSelectedDate(date.toISOString()));
   }, [dispatch]);
 
   const calendar = getCalendar(calendarDate);
+
   const month = getMonth(calendarDate);
   const year = getYear(calendarDate);
 
   const handleNextMonthClick = (): void => {
     const nextDate = date.add(1, 'month');
     date = dayjs(nextDate);
-    dispatch(setDate(date.format('MM-DD-YYYY')));
+    dispatch(setDate(date.toISOString()));
   };
 
   const handlePrevMonthClick = (): void => {
     const nextDate = date.subtract(1, 'month');
     date = dayjs(nextDate);
-    dispatch(setDate(date.format('MM-DD-YYYY')));
+    dispatch(setDate(date.toISOString()));
   };
 
   const handleDayBoxClick = (type: string, day: number): void => {
@@ -53,14 +54,12 @@ const useCalendar = (): IUseCalendar => {
       const prevSelected = dayjs(calendarDate)
         .subtract(1, 'month')
         .set('date', day)
-        .format('MM-DD-YYYY');
+        .toISOString();
 
       dispatch(setSelectedDate(prevSelected));
       setDateKey(`p${day}-${month + -1}-${year}`);
     } else if (type === 'curr') {
-      const currDate = dayjs(calendarDate)
-        .set('date', day)
-        .format('MM-DD-YYYY');
+      const currDate = dayjs(calendarDate).set('date', day).toISOString();
       dispatch(setSelectedDate(currDate));
 
       setDateKey(`c${day}-${month}-${year}`);
@@ -68,7 +67,7 @@ const useCalendar = (): IUseCalendar => {
       const nextSelected = dayjs(calendarDate)
         .add(1, 'month')
         .set('date', day)
-        .format('MM-DD-YYYY');
+        .toISOString();
 
       dispatch(setSelectedDate(nextSelected));
       setDateKey(`n${day}-${month + 1}-${year}`);
